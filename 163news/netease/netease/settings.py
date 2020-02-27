@@ -8,6 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import datetime
 
 BOT_NAME = 'netease'
 
@@ -63,9 +64,9 @@ COOKIES_ENABLED = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'netease.pipelines.NeteasePipeline': 300,
-# }
+ITEM_PIPELINES = {
+   'netease.pipelines.NeteasePipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -96,7 +97,14 @@ FEED_EXPORT_ENCODING = 'ANSI'
 DOWNLOAD_DELAY = 0.01
 
 # 爬取的新闻条数上限
-CLOSESPIDER_ITEMCOUNT = 500
+CLOSESPIDER_ITEMCOUNT = 100
 
 # 下载超时设定，超过10秒没响应则放弃当前URL
 DOWNLOAD_TIMEOUT = 100
+
+mongo_host = "your ip address"
+mongo_port = 27017
+mongo_db_name = "your db name"
+# 日期作为collection名字
+date = str(datetime.date.today())
+mongo_db_collection = date
